@@ -1,26 +1,30 @@
 angular.module('todoApp', [])
-  .controller('TodoListController', function() {
-    var todoList = this;
-    todoList.todos = [
-      {text:'learn angular', done:true},
-      {text:'build an angular app', done:false}];
+  .controller('TodoListController', function($scope) {
+    $scope.todos = [
+      {title:'learn angular', done:true},
+      {title:'build an angular app', done:false}];
+    $scope.reverse = true;
+
+    $scope.reverseOrder = function(){
+        $scope.reverse = !$scope.reverse;
+    }
  
-    todoList.addTodo = function() {
-      todoList.todos.push({text:todoList.todoText, done:false});
-      todoList.todoText = '';
+    $scope.addTodo = function() {
+      $scope.todos.push({title:todoList.todoText, done:false});
+      $scope.todoText = '';
     };
  
-    todoList.remaining = function() {
+    $scope.remaining = function() {
       var count = 0;
-      angular.forEach(todoList.todos, function(todo) {
+      angular.forEach($scope.todos, function(todo) {
         count += todo.done ? 0 : 1;
       });
       return count;
     };
  
-    todoList.archive = function() {
+    $scope.archive = function() {
       var oldTodos = todoList.todos;
-      todoList.todos = [];
+      $scope.todos = [];
       angular.forEach(oldTodos, function(todo) {
         if (!todo.done) todoList.todos.push(todo);
       });
