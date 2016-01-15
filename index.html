@@ -7,11 +7,11 @@
 	    <h2>Todo</h2>
 	    <div ng-controller="TodoListController as todoList">
 	      <span>{{remaining()}} of {{todos.length}} remaining</span>
-	      [ <a href="" ng-click="archive()">archive</a> ]
+	      [ <a href="" ng-click="deleteAutos()">delete competed</a> ]
 	      <a href=""  ng-click="reverseOrder()">Todo sorting</a>
 	      <ul class="unstyled" >
 	        <li ng-repeat="todo in todos | orderBy:'title':reverse">
-	          <input type="checkbox" ng-model="todo.done"><span ng-click="change(todo)">{{todo.title}}</spam>
+	          <input type="checkbox" ng-model="todo.done"><span ng-click="changeTodo(todo)" ng-dblclick="deleteTodo(todo)">{{todo.title}}</spam>
 	        </li>
 	      </ul>
 	      <form ng-submit="addTodo()">
