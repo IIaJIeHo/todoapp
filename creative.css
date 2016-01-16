@@ -1,0 +1,20 @@
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+.list-group-item input{
+	margin-right:10px;
+}
+.input-group{
+	max-width: 600px;
+}
+.pa-l15{
+	padding-left:15px;
+}
+.caret.caret-reversed {
+    border-top-width: 0;
+    border-bottom: 4px solid;
+}
+button.close{
+	margin-top:-3px;
+}

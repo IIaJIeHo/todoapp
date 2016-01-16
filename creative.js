@@ -3,6 +3,8 @@ angular.module('todoApp', [])
     $scope.reverse = true;
     $scope.changed = null;
     $scope.saved = localStorage.getItem('todos');
+    $scope.showeditem = localStorage.getItem('showed') == null ? false : true;
+    console.log($scope.showeditem);
     $scope.todos = $scope.saved == null ? [] : JSON.parse($scope.saved);
     localStorage.setItem('todos', JSON.stringify($scope.todos));
 
@@ -15,6 +17,10 @@ angular.module('todoApp', [])
         $scope.todos.splice($scope.todos.indexOf($scope.changed),1);
         $scope.changed = null;
       }
+      if (($scope.todoText == undefined) || ($scope.todoText == '')){
+        return false;
+      }
+      console.log($scope.todoText);
       $scope.todos.push({title:$scope.todoText, done:false});
       $scope.todoText = '';
     };
@@ -44,8 +50,15 @@ angular.module('todoApp', [])
       });
     };
 
+      $scope.showed = function(){
+        $scope.showeditem = true;
+        localStorage.setItem('showed', true);
+      }
+
     $scope.$watch('todos', function(newVal, oldVal){
       localStorage.setItem('todos', JSON.stringify(newVal));
   }, true);
+
+
 
   });
