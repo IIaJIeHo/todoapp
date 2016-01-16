@@ -16,21 +16,21 @@
 	      [ <a href="" ng-click="deleteAutos()">delete competed</a> ]
 	      <a href=""  ng-click="reverseOrder()">sorting<span class="caret" ng-class="{'caret-reversed':reverse}"></span></a>
 	      <ul class="list-group" >
-	        <li class="list-group-item" ng-repeat="todo in todos track by $index | orderBy:'title':reverse">
+	        <li class="list-group-item" ng-repeat="todo in todos track by $index | orderBy:'title':reverse" ng-class="{'text-danger': changed == todo}">
 	          <input type="checkbox" ng-model="todo.done"><span ng-click="changeTodo(todo)" ng-dblclick="deleteTodo(todo)" class="done-{{todo.done}}">{{todo.title}}</span>
 	        </li>
 	      </ul>
 	      <form ng-submit="addTodo()">
 	      	<div class="input-group pa-l15">
-		        <input type="text" class="form-control" ng-model="todoText"  size="30" placeholder="add new todo here">
+		        <input type="text" class="form-control" ng-model="todoText"  size="30" placeholder="add new todo here" ng-blur="changed = null; text = 'add'; todoText='';">
 		        <span class="input-group-btn">
-		        		<input class="btn btn-primary" type="submit" value="add">
+		        		<input class="btn btn-primary" type="submit" value="{{text}}">
 		        </span>
 	        </div>
 	      </form>
 	          	<div class="alert alert-warning" id="a-request-restore" ng-class="{'hidden' : showeditem}">
 			        <button type="button" class="close" data-dismiss="alert" ng-click="showed()">x</button>
-			        <strong>You can delete todo by double clicking on title! </strong>
+			        <strong>You can delete todo by double clicking on title and start editing by one click</strong>
 			    </div>
 	    </div>
 	    </div>

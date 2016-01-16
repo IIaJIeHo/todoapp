@@ -7,6 +7,7 @@ angular.module('todoApp', [])
     console.log($scope.showeditem);
     $scope.todos = $scope.saved == null ? [] : JSON.parse($scope.saved);
     localStorage.setItem('todos', JSON.stringify($scope.todos));
+    $scope.text = 'add';
 
     $scope.reverseOrder = function(){
         $scope.reverse = !$scope.reverse;
@@ -20,9 +21,9 @@ angular.module('todoApp', [])
       if (($scope.todoText == undefined) || ($scope.todoText == '')){
         return false;
       }
-      console.log($scope.todoText);
       $scope.todos.push({title:$scope.todoText, done:false});
       $scope.todoText = '';
+      $scope.text = 'add';
     };
  
     $scope.remaining = function() {
@@ -36,6 +37,7 @@ angular.module('todoApp', [])
     $scope.changeTodo = function(todo){
       $scope.changed = todo;
       $scope.todoText = todo.title;
+      $scope.text = 'change';
     }
     //delete on double click
     $scope.deleteTodo = function(todo){
